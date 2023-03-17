@@ -7,7 +7,7 @@ var engine, world;
 var canvas;
 var palyer, playerBase, playerArcher;
 var playerArrows = [];
-var board1, board2;
+var board1, board2, board3;
 var numberOfArrows = 10;
 
 var score = 0;
@@ -31,8 +31,11 @@ function setup() {
     120
   );
 
-  board1 = new Board(width - 300, 330, 50, 200,"Idle.png");
-  board2 = new Board(width - 550, height - 300, 50, 200,"Idle.png");
+  board1 = new Board(width - 200, 400, 100, 50,"Idle.png");
+  board2 = new Board(width - 550, height - 200, 100, 50,"Idle.png");
+  board3 = new Board(width - 300, 200, 100, 50, "Idle.png" );
+  board4 = new Board(width -100, 600, 100, 50, "polvo.png" );
+  
 }
 
 function draw() {
@@ -46,6 +49,8 @@ function draw() {
 
   board1.display();
   board2.display();
+  board3.display();
+  board4.display();
 
   for (var i = 0; i < playerArrows.length; i++) {
     if (playerArrows[i] !== undefined) {
@@ -61,9 +66,19 @@ function draw() {
         playerArrows[i].body
       );
 
+       var board3Collision = Matter.SAT.collides(
+        board3.body,
+        playerArrows[i].body
+      );
+
+      var board4Collision = Matter.SAT.collides(
+        board4.body,
+        playerArrows[i].body
+      );
+
       
 
-      if (board1Collision.collided || board2Collision.collided) {
+      if (board1Collision.collided || board2Collision.collided || board3Collision.collided ||  board4Collision.collided ) {
         score += 5;
       }
 

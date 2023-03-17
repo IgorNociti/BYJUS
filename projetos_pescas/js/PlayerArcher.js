@@ -8,11 +8,11 @@ class PlayerArcher {
     this.width = width;
     this.height = height;
     this.collapse = false;
-    this.image = loadImage("Fish-rod.png");
+    this.image = loadImage("Image-Arrow-PNG.png");
 
     World.add(world, this.body);
 
-    Matter.Body.setAngle(this.body, 0); // -90 degree
+    Matter.Body.setAngle(this.body, -PI / 2); // -90 degree
   }
 
   display() {
@@ -24,7 +24,7 @@ class PlayerArcher {
       Matter.Body.setAngle(this.body, angle);
     }
 
-    if (keyIsDown(UP_ARROW) && angle > -1.6) {
+    if (keyIsDown(UP_ARROW) && angle > -1.9) {
       angle -= 0.01;
       Matter.Body.setAngle(this.body, angle);
     }

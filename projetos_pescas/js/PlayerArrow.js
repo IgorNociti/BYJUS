@@ -7,7 +7,7 @@ class PlayerArrow {
     this.width = width;
     this.height = height;
     this.body = Bodies.rectangle(x, y, this.width, this.height, options);
-    this.image = loadImage("./assets/arrow.png");
+    this.image = loadImage("minhoca-removebg-preview.png");
     this.archerAngle = archerAngle;
     this.velocity = p5.Vector.fromAngle(archerAngle);
     World.add(world, this.body);
@@ -21,7 +21,7 @@ class PlayerArrow {
 
   shoot(archerAngle) {
     this.velocity = p5.Vector.fromAngle(archerAngle + PI / 2);
-    this.velocity.mult(55);
+    this.velocity.mult(48);
 
     Matter.Body.setVelocity(this.body, {
       x: this.velocity.x,
@@ -48,7 +48,7 @@ class PlayerArrow {
     translate(pos.x, pos.y);
     rotate(angle);
     imageMode(CENTER);
-    image(this.image, 0, 0, this.width, this.height);
+    image(this.image, 0, 0, 250, 100);
     pop();
 
     if (this.body.velocity.x > 0 && this.body.position.x > 400) {
