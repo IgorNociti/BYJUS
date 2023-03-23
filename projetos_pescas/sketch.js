@@ -9,8 +9,10 @@ var palyer, playerBase, playerArcher;
 var playerArrows = [];
 var board1, board2, board3;
 var numberOfArrows = 10;
+var enemies = [];
 
 var score = 0;
+var timer = 1;
 
 function preload() {
   backgroundImg = loadImage("./PNG/2_game_background/2_game_background.png");
@@ -30,36 +32,58 @@ function setup() {
     20,
     120
   );
-
-  board1 = new Board(width - 200, 400, 100, 50,"Idle.png");
+/* board1 = new Board(width - 200, 400, 100, 50,"polvo.png");
   board2 = new Board(width - 550, height - 200, 100, 50,"Idle.png");
   board3 = new Board(width - 300, 200, 100, 50, "Idle.png" );
   board4 = new Board(width -100, 600, 100, 50, "polvo.png" );
-  
+  board1.posX = -20;*/
+}
+function generateBoard() {
+  for (let i = 0; i < 5; i++) {
+    enemies.push(
+      new Board(
+        floor(random(600, width )),
+        floor(random(20, height -20)),
+        100,50,"Idle.png"
+      )
+    );
+  }
 }
 
 function draw() {
   background( backgroundImg);
+  for (let i = 0; i < enemies.length; i++) {
+    enemies[i].display();
+  }
 
+ if (frameCount % 300 == 0 && timer > 0) {
+  timer--;
+  if (timer == 0) {
+    generateBoard();
+    timer = 1;
+  }
+}
   Engine.update(engine);
 
   playerBase.display();
   player.display();
-  playerArcher.display();
+  playerArcher.display(); 
 
-  board1.display();
+ /* board1.display();
   board2.display();
   board3.display();
   board4.display();
+  */
 
   for (var i = 0; i < playerArrows.length; i++) {
     if (playerArrows[i] !== undefined) {
       playerArrows[i].display();
 
-      var board1Collision = Matter.SAT.collides(
+      /*var board1Collision = Matter.SAT.collides(
         board1.body,
         playerArrows[i].body
       );
+
 
       var board2Collision = Matter.SAT.collides(
         board2.body,
@@ -74,13 +98,15 @@ function draw() {
       var board4Collision = Matter.SAT.collides(
         board4.body,
         playerArrows[i].body
-      );
+      )
+      
 
       
 
       if (board1Collision.collided || board2Collision.collided || board3Collision.collided ||  board4Collision.collided ) {
         score += 5;
       }
+      */
 
       
 

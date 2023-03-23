@@ -48,7 +48,7 @@ class PlayerArrow {
     translate(pos.x, pos.y);
     rotate(angle);
     imageMode(CENTER);
-    image(this.image, 0, 0, 250, 100);
+    image(this.image, 0, 0, 100, 100);
     pop();
 
     if (this.body.velocity.x > 0 && this.body.position.x > 400) {

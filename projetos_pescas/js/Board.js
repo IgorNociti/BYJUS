@@ -21,6 +21,7 @@ class Board {
     rotate(angle);
     imageMode(CENTER);
     image(this.image, 0, 0, this.width, this.height);
+    pos.x--;
     pop();
   }
 }
