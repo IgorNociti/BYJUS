@@ -12,6 +12,11 @@ class Board {
 
     World.add(world, this.body);
   }
+  removes(index) {
+    this.isRemoved = true;
+    Matter.World.remove(world, this.body);
+    delete enemies[index];
+  }
 
   display() {
     var pos = this.body.position;

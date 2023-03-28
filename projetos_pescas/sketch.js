@@ -41,7 +41,7 @@ function setup() {
 function generateBoard() {
   for (let i = 0; i < 5; i++) {
     enemies.push(
-      new Board(
+      new Board( 
         floor(random(600, width )),
         floor(random(20, height -20)),
         100,50,"Idle.png"
@@ -76,38 +76,40 @@ function draw() {
   */
 
   for (var i = 0; i < playerArrows.length; i++) {
-    if (playerArrows[i] !== undefined) {
+    for (var j = 0; j < enemies.length; j++) {
+      if (playerArrows[i] !== undefined) {
       playerArrows[i].display();
 
-      /*var board1Collision = Matter.SAT.collides(
-        board1.body,
+      var boardCollision = Matter.SAT.collides(
+        enemies[j].body,
         playerArrows[i].body
       );
 
-
+/*
       var board2Collision = Matter.SAT.collides(
         board2.body,
         playerArrows[i].body
       );
-
        var board3Collision = Matter.SAT.collides(
         board3.body,
         playerArrows[i].body
       );
-
       var board4Collision = Matter.SAT.collides(
         board4.body,
         playerArrows[i].body
       )
       
-
       
-
       if (board1Collision.collided || board2Collision.collided || board3Collision.collided ||  board4Collision.collided ) {
         score += 5;
+        board.destroy()
       }
       */
-
+      if (boardCollision.collided ) {
+        score += 5;
+        enemies.splice(j,1);
+        //enemies[j].removes(j);
+      }
       
 
       
@@ -123,6 +125,7 @@ function draw() {
       }
     }
   }
+}
 
   // Título
   fill("#FFFF");
@@ -194,5 +197,4 @@ function gameOver() {
     }
   );
 }
-
 
